@@ -1,6 +1,7 @@
 # Cadastro de Ninjas API
 
 API RESTful desenvolvida para o gerenciamento de ninjas e suas missões. Este projeto foi criado com foco na aplicação de boas práticas de desenvolvimento backend com o ecossistema Spring.
+
 **Projeto ainda em progresso
 
 ## Tecnologias Utilizadas
