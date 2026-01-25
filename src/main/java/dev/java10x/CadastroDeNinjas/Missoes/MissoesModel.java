@@ -1,10 +1,13 @@
 package dev.java10x.CadastroDeNinjas.Missoes;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,6 +20,11 @@ public class MissoesModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private char rank;
+
+    @OneToMany(mappedBy = "missoes")
+    private List<NinjaModel> ninjas;
 }
