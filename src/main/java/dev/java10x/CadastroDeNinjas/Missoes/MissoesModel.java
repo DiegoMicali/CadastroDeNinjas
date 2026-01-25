@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeNinjas;
+package dev.java10x.CadastroDeNinjas.Missoes;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,14 +11,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "tb_cadastro")
-public class NinjaModel {
+@Table(name = "tb_missoes")
+public class MissoesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    String nome;
-    String email;
-    int idade;
-
+    private Long id;
+    private String nome;
+    private char rank;
 }
