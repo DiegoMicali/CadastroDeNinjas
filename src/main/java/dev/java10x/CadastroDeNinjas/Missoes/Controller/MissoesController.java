@@ -28,6 +28,12 @@ public class MissoesController {
         return missoesService.listarMissoes();
     }
 
+    // GET -- Requisição para listar missões por Id
+    @GetMapping("/listar/{id}")
+    public MissoesModel listarMissoesPorId(@PathVariable Long id) {
+        return missoesService.listarMissoesPorId(id);
+    }
+
     // PUT -- Requisição para atualizar missões
     @PutMapping("/alterar")
     public String alterarMissao() {
