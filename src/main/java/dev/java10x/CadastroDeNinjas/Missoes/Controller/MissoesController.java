@@ -18,8 +18,8 @@ public class MissoesController {
 
     // PUT -- Requisição para criar missões
     @PostMapping("/criar")
-    public String criarMissao() {
-        return "missão criada com sucesso";
+    public MissoesModel criarMissao(@RequestBody MissoesModel missao) {
+        return missoesService.criarMissao(missao);
     }
 
     // GET -- Requisição para listar missões

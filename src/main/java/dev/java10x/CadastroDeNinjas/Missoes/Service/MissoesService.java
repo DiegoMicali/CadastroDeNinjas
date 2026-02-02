@@ -1,6 +1,7 @@
 package dev.java10x.CadastroDeNinjas.Missoes.Service;
 
 import dev.java10x.CadastroDeNinjas.Missoes.Repository.MissoesRepository;
+import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,4 +28,8 @@ public class MissoesService {
         return missaoPorId.orElse(null);
     }
 
+    //Criar ninja
+    public MissoesModel criarMissao(MissoesModel missao) {
+     return missoesRepository.save(missao);
+    }
 }
