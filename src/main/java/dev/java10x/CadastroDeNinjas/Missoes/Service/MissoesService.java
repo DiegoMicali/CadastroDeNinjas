@@ -28,8 +28,13 @@ public class MissoesService {
         return missaoPorId.orElse(null);
     }
 
-    //Criar ninja
+    //Criar missão
     public MissoesModel criarMissao(MissoesModel missao) {
      return missoesRepository.save(missao);
+    }
+
+    //Deletar missão por id
+    public void deletarMissaoPorId(Long id) {
+        missoesRepository.deleteById(id);
     }
 }
