@@ -9,6 +9,7 @@ import lombok.*;
 @Data
 @Entity
 @Table(name = "tb_cadastro")
+@ToString(exclude = "missoes")
 public class NinjaModel {
 
     @Id
