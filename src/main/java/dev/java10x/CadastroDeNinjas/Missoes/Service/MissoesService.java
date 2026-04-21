@@ -1,8 +1,9 @@
 package dev.java10x.CadastroDeNinjas.Missoes.Service;
 
+import dev.java10x.CadastroDeNinjas.Missoes.DTO.MissoesDTO;
 import dev.java10x.CadastroDeNinjas.Missoes.Mapper.MissoesMapper;
+import dev.java10x.CadastroDeNinjas.Missoes.Model.MissoesModel;
 import dev.java10x.CadastroDeNinjas.Missoes.Repository.MissoesRepository;
-import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaModel;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -39,8 +40,12 @@ public class MissoesService {
      return missoesMapper.map(missao);
     }
 
-    public void deletarMissaoPorId(Long id) {
-        missoesRepository.deleteById(id);
+    public boolean deletarMissaoPorId(Long id) {
+        if (missoesRepository.existsById(id)) {
+            missoesRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public MissoesDTO atualizarMissao(Long id, MissoesDTO missoesDTO) {

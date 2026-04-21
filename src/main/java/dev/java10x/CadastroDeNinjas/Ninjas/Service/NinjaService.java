@@ -1,6 +1,8 @@
 package dev.java10x.CadastroDeNinjas.Ninjas.Service;
 
+import dev.java10x.CadastroDeNinjas.Ninjas.DTO.NinjaDTO;
 import dev.java10x.CadastroDeNinjas.Ninjas.Mapper.NinjaMapper;
+import dev.java10x.CadastroDeNinjas.Ninjas.Model.NinjaModel;
 import dev.java10x.CadastroDeNinjas.Ninjas.Repository.NinjaRepository;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +40,12 @@ public class NinjaService {
         return ninjaMapper.map(ninja);
     }
 
-    public void deletarNinjaPorId(Long id) {
-        ninjaRepository.deleteById(id);
+    public boolean deletarNinjaPorId(Long id) {
+        if (ninjaRepository.existsById(id)) {
+            ninjaRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     // Atualizar Ninja
