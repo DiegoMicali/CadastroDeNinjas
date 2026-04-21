@@ -1,11 +1,8 @@
-package dev.java10x.CadastroDeNinjas.Missoes.Service;
+package dev.java10x.CadastroDeNinjas.Missoes.DTO;
 
-import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +12,5 @@ public class MissoesDTO {
     private Long id;
     private String nome;
     private char rank;
-    private List<NinjaModel> ninjas;
 
 }

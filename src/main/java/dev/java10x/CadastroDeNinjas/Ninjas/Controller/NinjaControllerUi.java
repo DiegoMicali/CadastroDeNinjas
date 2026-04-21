@@ -1,8 +1,7 @@
 package dev.java10x.CadastroDeNinjas.Ninjas.Controller;
-import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaDTO;
+
+import dev.java10x.CadastroDeNinjas.Ninjas.DTO.NinjaDTO;
 import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -59,5 +58,3 @@ public class NinjaControllerUi {
     }
 
 }
-
-

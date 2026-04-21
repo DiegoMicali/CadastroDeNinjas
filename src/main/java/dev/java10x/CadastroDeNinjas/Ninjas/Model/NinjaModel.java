@@ -1,6 +1,6 @@
-package dev.java10x.CadastroDeNinjas.Ninjas.Service;
+package dev.java10x.CadastroDeNinjas.Ninjas.Model;
 
-import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesModel;
+import dev.java10x.CadastroDeNinjas.Missoes.Model.MissoesModel;
 import jakarta.persistence.*;
 import lombok.*;
 

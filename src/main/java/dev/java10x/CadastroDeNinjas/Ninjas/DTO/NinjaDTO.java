@@ -1,6 +1,6 @@
-package dev.java10x.CadastroDeNinjas.Ninjas.Service;
+package dev.java10x.CadastroDeNinjas.Ninjas.DTO;
 
-import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesModel;
+import dev.java10x.CadastroDeNinjas.Missoes.DTO.MissoesDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +16,6 @@ public class NinjaDTO {
     private String imgUrl;
     private int idade;
     private String rank;
-    private MissoesModel missoes;
+    private MissoesDTO missoes;
 
 }

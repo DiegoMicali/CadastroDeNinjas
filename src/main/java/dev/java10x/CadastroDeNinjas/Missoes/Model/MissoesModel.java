@@ -1,7 +1,7 @@
-package dev.java10x.CadastroDeNinjas.Missoes.Service;
+package dev.java10x.CadastroDeNinjas.Missoes.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaModel;
+import dev.java10x.CadastroDeNinjas.Ninjas.Model.NinjaModel;
 import jakarta.persistence.*;
 import lombok.*;
 
