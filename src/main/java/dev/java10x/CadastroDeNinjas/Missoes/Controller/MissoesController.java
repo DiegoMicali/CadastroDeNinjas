@@ -1,7 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Missoes.Controller;
 
-import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesDTO;
-import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesModel;
+import dev.java10x.CadastroDeNinjas.Missoes.DTO.MissoesDTO;
 import dev.java10x.CadastroDeNinjas.Missoes.Service.MissoesService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,11 +35,10 @@ public class MissoesController {
     public ResponseEntity<?> listarMissoesPorId(@PathVariable Long id) {
         MissoesDTO missao = missoesService.listarMissoesPorId(id);
         if (missao != null) {
-            return ResponseEntity.status(HttpStatus.FOUND)
-                    .body(missao);
+            return ResponseEntity.ok(missao);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Informe um valor de id válido. O id " + id + "não exite");
+                    .body("Informe um valor de id válido. O id " + id + " não existe.");
         }
     }
 
@@ -48,21 +46,20 @@ public class MissoesController {
     public ResponseEntity<String> alterarMissao(@PathVariable Long id,@RequestBody MissoesDTO missaoAtualizada) {
         MissoesDTO missao = missoesService.atualizarMissao(id, missaoAtualizada);
         if (missao != null) {
-            return ResponseEntity.ok("Missão + " + missao.getNome() + " criado com sucesso. Id: " + id );
+            return ResponseEntity.ok("Missão " + missao.getNome() + " atualizada com sucesso. Id: " + id);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("A missão de id: " + id + "não foi encontrado");
+                    .body("A missão de id: " + id + " não foi encontrada");
         }
     }
 
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarMissao(@PathVariable Long id) {
-         if (missoesService.listarMissoesPorId(id) != null) {
-             missoesService.deletarMissaoPorId(id);
-             return ResponseEntity.ok("Missão com o id " + id + " deletada com sucesso");
-         } else {
-             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                     .body("A missão com o id " + id + " não foi encontrada");
-         }
+        if (missoesService.deletarMissaoPorId(id)) {
+            return ResponseEntity.ok("Missão com o id " + id + " deletada com sucesso");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("A missão com o id " + id + " não foi encontrada");
+        }
     }
 }

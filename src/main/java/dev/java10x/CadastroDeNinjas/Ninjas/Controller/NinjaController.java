@@ -1,7 +1,6 @@
 package dev.java10x.CadastroDeNinjas.Ninjas.Controller;
 
-import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaDTO;
-import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaModel;
+import dev.java10x.CadastroDeNinjas.Ninjas.DTO.NinjaDTO;
 import dev.java10x.CadastroDeNinjas.Ninjas.Service.NinjaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +16,6 @@ public class NinjaController {
 
     public NinjaController(NinjaService ninjaService) {
         this.ninjaService = ninjaService;
-    }
-
-    @GetMapping("/boasvindas")
-    public String boasVindas() {
-        return "Essa é a primeira mensagem nessa rota";
     }
 
     // Adicionar ninja
@@ -45,7 +39,7 @@ public class NinjaController {
             return ResponseEntity.ok(ninja);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                    .body("Informe um valor de id válido. O id " + id + " não exite.");
+                    .body("Informe um valor de id válido. O id " + id + " não existe.");
         }
     }
 
@@ -62,15 +56,12 @@ public class NinjaController {
 
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarNinjaPorId(@PathVariable Long id) {
-
-        if (ninjaService.listarNinjasPorId(id) != null) {
-            ninjaService.deletarNinjaPorId(id);
+        if (ninjaService.deletarNinjaPorId(id)) {
             return ResponseEntity.ok("Ninja com o id " + id + " deletado com sucesso");
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("O ninja com o id " + id + " não foi encontrado");
         }
-
     }
 
 }
