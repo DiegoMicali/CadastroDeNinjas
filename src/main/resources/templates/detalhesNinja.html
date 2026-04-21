@@ -1,112 +1,67 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Detalhes do Ninja</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        div {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 600px;
-            margin: auto;
-        }
-
-        img {
-            border-radius: 50%;
-            display: block;
-            margin: 0 auto 20px;
-            width: 100px;
-            height:100px;
-        }
-
-        p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        h3 {
-            margin-top: 20px;
-            color: #333;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 15px;
-            text-decoration: none;
-            color: white;
-            background-color: #4CAF50;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            text-align: center;
-        }
-
-        a:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Detalhes do Ninja</h1>
-<div>
-    <img th:src="${ninja.imgUrl}" alt="${ninja.nome}" width="200" />
-    <h2 th:text="${ninja.nome}"></h2>
-    <p><strong>Email:</strong> <span th:text="${ninja.email}"></span></p>
-    <p><strong>Idade:</strong> <span th:text="${ninja.idade}"></span></p>
-    <p><strong>Rank:</strong> <span th:text="${ninja.rank}"></span></p>
 
-    <h3>Missões:</h3>
-    <table>
-        <thead>
-        <tr>
-            <th>Nome</th>
-            <th>Rank</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="missao : ${ninja.missoes}">
-            <td th:text="${missao.nome}"></td>
-            <td th:text="${missao.rank}"></td>
-        </tr>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-        </tbody>
-    </table>
+<div class="main-container">
+
+    <div class="page-header">
+        <h1 class="page-title">Detalhes do Ninja</h1>
+        <a th:href="@{/ninjas/ui/listar}" class="btn btn-outline">&#8592; Voltar</a>
+    </div>
+
+    <div class="profile-card">
+
+        <div class="profile-header">
+            <img th:src="${ninja.imgUrl}" class="profile-avatar" alt="avatar">
+            <h2 class="profile-name" th:text="${ninja.nome}"></h2>
+            <span class="badge" th:text="${ninja.rank}"></span>
+        </div>
+
+        <div class="profile-body">
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Email</label>
+                    <span th:text="${ninja.email}"></span>
+                </div>
+                <div class="info-item">
+                    <label>Idade</label>
+                    <span th:text="${ninja.idade}"></span>
+                </div>
+                <div class="info-item">
+                    <label>ID</label>
+                    <span th:text="${ninja.id}"></span>
+                </div>
+                <div class="info-item">
+                    <label>Rank</label>
+                    <span th:text="${ninja.rank}"></span>
+                </div>
+            </div>
+
+            <p class="section-label">Missão Atribuída</p>
+
+            <div th:if="${ninja.missoes != null}" class="missao-row">
+                <span th:text="${ninja.missoes.nome}"></span>
+                <span class="badge" th:text="${ninja.missoes.rank}"></span>
+            </div>
+            <p th:if="${ninja.missoes == null}" class="no-data">Nenhuma missão atribuída a este ninja.</p>
+
+        </div>
+
+        <div class="profile-footer">
+            <a th:href="@{/ninjas/ui/deletar/{id}(id=${ninja.id})}" class="btn btn-danger">Deletar Ninja</a>
+        </div>
+
+    </div>
+
 </div>
-<a href="/ninjas/ui/listar">Voltar para a lista de ninjas</a>
+
 </body>
 </html>

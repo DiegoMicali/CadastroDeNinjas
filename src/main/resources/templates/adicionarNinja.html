@@ -1,100 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <meta charset="UTF-8">
     <title>Adicionar Ninja</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-container {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 400px;
-            margin: auto;
-        }
-
-        label {
-            margin: 10px 0 5px;
-            display: block;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .mensagem {
-            color: green;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        a {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            color: #4CAF50;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
-<h1>Adicionar Novo Ninja</h1>
-<div class="form-container">
-    <div th:if="${mensagem}" class="mensagem" th:text="${mensagem}"></div>
-    <form th:action="@{/ninjas/ui/salvar}" th:object="${ninja}" method="post">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" th:field="*{nome}" required />
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" th:field="*{email}" required />
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 
-        <label for="imgUrl">URL da Imagem:</label>
-        <input type="text" id="imgUrl" th:field="*{imgUrl}" required />
+<div class="main-container">
 
-        <label for="idade">Idade:</label>
-        <input type="number" id="idade" th:field="*{idade}" required />
+    <div class="page-header">
+        <h1 class="page-title">Adicionar Ninja</h1>
+        <a th:href="@{/ninjas/ui/listar}" class="btn btn-outline">&#8592; Voltar</a>
+    </div>
 
-        <label for="rank">Rank:</label>
-        <input type="text" id="rank" th:field="*{rank}" />
+    <div class="form-card">
 
-        <button type="submit">Cadastrar Ninja</button>
-    </form>
-    <a th:href="@{/ninjas/ui/listar}">Voltar para a lista de ninjas</a>
+        <div th:if="${mensagem}" class="alert-success" th:text="${mensagem}"></div>
+
+        <form th:action="@{/ninjas/ui/salvar}" th:object="${ninja}" method="post">
+
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" th:field="*{nome}" placeholder="Ex: Naruto Uzumaki" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" placeholder="ninja@konoha.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="imgUrl">URL da Imagem</label>
+                <input type="text" id="imgUrl" th:field="*{imgUrl}" placeholder="https://..." required>
+            </div>
+
+            <div class="form-divider"></div>
+
+            <div class="form-group">
+                <label for="idade">Idade</label>
+                <input type="number" id="idade" th:field="*{idade}" placeholder="16" required>
+            </div>
+
+            <div class="form-group">
+                <label for="rank">Rank</label>
+                <input type="text" id="rank" th:field="*{rank}" placeholder="Ex: Genin, Chunin, Jonin">
+            </div>
+
+            <div class="form-divider"></div>
+
+            <button type="submit" class="btn btn-primary btn-submit">Cadastrar Ninja</button>
+
+        </form>
+
+    </div>
+
 </div>
+
 </body>
 </html>
